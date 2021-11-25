@@ -1,14 +1,21 @@
 import React from 'react';
-import Icons from './components/Icons/Icons';
-import User from './components/User/User';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Navbar from './components/Navbar/Navbar';
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      App
-      <User />
-      <Icons type="dashBoard" color="red" size="16px"/>
-    </div>
+    <>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/dashboard" />
+            <Route exact path="/hamburger" />
+          </Switch>
+        </div>
+      </Router>
+    </>
   );
 }
 

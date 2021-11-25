@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import { MdOutlineDashboard } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
@@ -28,16 +27,13 @@ const iconSet = {
   delete: RiDeleteBin6Line,
 };
 
-const Icons = ({ type, color, size }) => {
+const Icons = ({ type, className }) => {
   const ComponentToRender = iconSet[type];
   return (
     <>
       { type &&
         <ComponentToRender
-          css={css`
-            color: ${color};
-            font-size: ${size};
-          `}
+          className={className}
         />
       }
     </>

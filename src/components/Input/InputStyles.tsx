@@ -56,12 +56,16 @@ export const InputStyles = styled.input(({ width, color, border, inputPlaceholde
     }
 `);
 
-export const BoxIconsInput = styled.div`
+export const BoxIconsInput = styled.button`
     margin: 0 12px;
     padding: 0 4px 0 2px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
     
     .iconInput {
         color: ${colors.neutral2};

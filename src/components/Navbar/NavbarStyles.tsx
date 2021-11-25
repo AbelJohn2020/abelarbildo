@@ -13,6 +13,7 @@ export const NavbarStyles = styled.div`
     box-sizing: border-box;
     border-radius: 24px;
     padding: 16px 0 0 0;
+    margin: 0;
 
     .navbarOption {
         width: 100%;
@@ -23,6 +24,13 @@ export const NavbarStyles = styled.div`
         align-items: center;
         padding: 16px 20px;
         color: ${colors.neutral2};
+        
+        &:hover {
+            background: ${colors.neutral3};
+            .icons {
+                background: ${colors.neutral3};
+            }
+        }
     }
 
     .icons {

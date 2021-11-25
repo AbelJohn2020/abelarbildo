@@ -11,10 +11,9 @@ type titleStyles = {
     align: string,
     spacing: string,
     transform: string,
-    background: string,
 }
 
-export const TitleStyles = styled.h1(( { family, fontStyle, weight, size, lineHeight, display, align, spacing, transform, background }: titleStyles) => css`
+export const TitleStyles = styled.h1(( { family, fontStyle, weight, size, lineHeight, display, align, spacing, transform }: titleStyles) => css`
     width: 100%;
     box-sizing: border-box;
     font-family: ${family};
@@ -27,5 +26,5 @@ export const TitleStyles = styled.h1(( { family, fontStyle, weight, size, lineHe
     align-items: ${align};
     letter-spacing: ${spacing};
     text-transform: ${transform};
-    background: ${background};
+    background: transparent;
 `);

@@ -12,10 +12,9 @@ type title = {
     align: string,
     spacing: string,
     transform: string,
-    background: string,
 }
 
-export const Title = ({ name, family, fontStyle, weight, size, lineHeight, display, align, spacing, transform, background }: title) => {
+export const Title = ({ name, family, fontStyle, weight, size, lineHeight, display, align, spacing, transform }: title) => {
     return (
         <div>
             <TitleStyles 
@@ -28,7 +27,6 @@ export const Title = ({ name, family, fontStyle, weight, size, lineHeight, displ
                 align={align} 
                 spacing={spacing} 
                 transform={transform}
-                background={background}
             >
                 {name}
             </TitleStyles>

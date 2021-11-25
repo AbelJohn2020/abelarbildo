@@ -27,7 +27,6 @@ const Navbar = () => {
                     align="center"
                     spacing="0.75px"
                     transform="uppercase"
-                    background={colors.neutral4}
                 />
             </Link>
             <Link to="/hamburger" className='navbarOption'>
@@ -45,7 +44,6 @@ const Navbar = () => {
                     align="center"
                     spacing="0.75px"
                     transform="uppercase"
-                    background={colors.neutral4}
                 />
             </Link>
         </NavbarStyles>

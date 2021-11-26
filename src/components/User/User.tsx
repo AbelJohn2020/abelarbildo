@@ -1,6 +1,6 @@
-import { useQuery } from '@apollo/client';
 import React from 'react'
-import { USER } from '../queries/user';
+import { useQuery } from '@apollo/client';
+import { USER } from '../queries/queries';
 
 const User = () => {
     const { loading, error, data } = useQuery(USER, { fetchPolicy: "network-only" });

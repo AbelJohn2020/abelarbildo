@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
-import { Input } from './components/Input/Input';
-import { colors } from './components/UI/colors';
-import { Button } from './components/Buttons/Buttons';
+import User from "./components/User/User";
+import Header from './components/Header/Header';
+import Cards from './components/Cards/Cards';
+import Tasks from './components/Tasks/Tasks';
 
 const prevState = [
   { id: "1", active: false  },
@@ -12,7 +13,7 @@ const prevState = [
   { id: "3", active: false  },
 ];
 
-const navbarIcons = [
+export const navbarIcons = [
   { id: "1", type: "dashBoard" },
   { id: "2", type: "hamburger" },
   { id: "3", type: "assignee" },
@@ -37,48 +38,12 @@ function App() {
         <div className="App">
           <Navbar selected={selected} setSelected={setSelected}/>
           <div className='App__right'>
-            <div className="App__right--icons">
-              <Input 
-                inputType="text"
-                name="search"
-                placeholder="search"
-                value={inputValue}
-                onChange={handleChange}
-                isThereFirstIcon={true}
-                firstIcon="search"
-                isThereSecondIcon={true}
-                secondIcon="notifications"
-                photo={true}
-                profile="gaa" //modificar
-                width="100%"
-                color={colors.neutral2}
-                inputPlaceholder={colors.neutral2}
-                border="none"
-                inputPadding="20px 0"
-                inputMargin="0"
-                inputBackground="transparent"
-              />
-              <div className="App_right--icons-dh">
-                {
-                  navbarIcons.map(({id, type}) => (
-                    <Button 
-                      key={id}
-                      id={id} 
-                      type={type} 
-                      border={colors.primary4}
-                      clickedColor={colors.primary4}
-                      color={colors.neutral2}
-                      selected={selected}
-                    />
-                  ))
-                }
-              </div>
-            </div>
-            <Switch>
-              <Route exact path="/dashboard" />
-              <Route exact path="/hamburger" />
-              <Route exact path="/profile" />
-            </Switch>
+            <Header inputValue={inputValue} handleChange={handleChange} navbarIcons={navbarIcons} selected={selected} />
+            <Routes>
+              <Route path="/dashboard" element={<Cards />}/>
+              <Route path="/mytask" element={<Tasks />}/>
+              <Route path="/profile" element={<User />}/>
+            </Routes>
           </div>
         </div>
       </Router>

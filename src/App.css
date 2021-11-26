@@ -13,9 +13,3 @@
     grid-template-rows: 100%;
     box-sizing: border-box;
 }
-
-.App_right--icons-dh {
-    width: 100%;
-    display: flex;
-    padding: 36px 0 20px 0;
-}

@@ -9,4 +9,7 @@ export const colors = {
     neutral3: "#393D41",
     neutral4: "#2C2F33",
     neutral5: "#222528",
+    background: "rgba(148, 151, 154, 0.1)",
+    backgroundT: "rgba(229, 180, 84, 0.1)",
+    backgroundS: "rgba(112, 178, 82, 0.1)",
 }

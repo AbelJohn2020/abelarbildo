@@ -7,7 +7,7 @@ import { BiMessageRounded, BiPencil } from "react-icons/bi";
 import { IoMdAlarm } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import { RiPriceTag3Fill, RiNotification3Line, RiDeleteBin6Line } from "react-icons/ri";
-import { AiOutlineRight } from "react-icons/ai";
+import { AiOutlineRight, AiOutlinePartition } from "react-icons/ai";
 
 const iconSet = {
   dashBoard: FiGrid,
@@ -25,6 +25,7 @@ const iconSet = {
   notifications: RiNotification3Line,
   edit: BiPencil,
   delete: RiDeleteBin6Line,
+  share: AiOutlinePartition,
 };
 
 const Icons = ({ type, className }) => {

@@ -87,7 +87,7 @@ export const FooterIconsCardStyles = styled.div`
 `;
 
 export const BoxImg = styled.div`
-    width: 4%;
+    width: 10%;
     box-sizing: border-box;
     display: flex;
     align-items: center;

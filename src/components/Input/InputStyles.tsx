@@ -73,3 +73,25 @@ export const BoxIconsInput = styled.button`
         box-sizing: border-box;
     }
 `;
+
+export const DefaulPhoto = styled.button`
+    margin: 0 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: ${colors.neutral5};
+    cursor: pointer;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .iconInput {
+        color: ${colors.neutral2};
+        font-size: 24px;
+        box-sizing: border-box;
+    }
+`;

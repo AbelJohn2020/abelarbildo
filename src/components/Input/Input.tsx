@@ -1,6 +1,6 @@
 import React from 'react'
 import Icons from '../Icons/Icons'
-import { BoxIconsInput, BoxInput, InputStyles } from './InputStyles'
+import { BoxIconsInput, BoxInput, DefaulPhoto, InputStyles } from './InputStyles'
 
 type input = {
     inputType: string,
@@ -65,6 +65,9 @@ export const Input = ({
             />
             {
                 isThereSecondIcon && <BoxIconsInput><Icons type={secondIcon} className="iconInput" /></BoxIconsInput>
+            }
+            {
+                photo && <DefaulPhoto><Icons type="assignee" className="iconInput" /></DefaulPhoto>
             }
         </BoxInput>
     )

@@ -3,6 +3,11 @@ import { useQuery } from '@apollo/client';
 import CardModel from '../CardModel/CardModel';
 import { TASKS } from '../queries/queries';
 import { card, Task } from './TypeCard';
+import { Title } from '../Titles/Titles';
+import { ButtonHeaderCardStyles, HeaderModelCardStyles } from '../CardModel/CardModelStyles';
+import { colors } from '../UI/colors';
+import Icons from '../Icons/Icons';
+import { Column, DashBoardStyles } from './CardsStyles';
 
 const Cards = () => {
     const { loading, error, data } = useQuery(TASKS);
@@ -49,8 +54,27 @@ const Cards = () => {
             {
                 error && <p>Error 404</p>
             }
-            <div>
-                <div>
+            <DashBoardStyles>
+                <Column>
+                    <HeaderModelCardStyles>
+                        <Title
+                            name={`backlog(${backlog && backlog.length})`}
+                            family="SF Pro Display"
+                            fontStyle="normal" 
+                            weight="600" 
+                            size="18px" 
+                            lineHeight="32px" 
+                            display="flex" 
+                            align="flex-start" 
+                            spacing="0.75px" 
+                            transform="capitalize"
+                        />
+                        <div>
+                            <ButtonHeaderCardStyles color={colors.neutral2} size="18px">
+                                <Icons type="ellipsis" className="cardIcon" />
+                            </ButtonHeaderCardStyles>
+                        </div>
+                    </HeaderModelCardStyles>
                     <div>
                         {
                             loading === false && backlog.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
@@ -66,18 +90,82 @@ const Cards = () => {
                            )) 
                         }
                     </div>
-                </div>
-                {/* <div>
+                </Column>
+
+                <Column>
+                    <HeaderModelCardStyles>
+                        <Title
+                            name={`todo(${todo && todo.length})`}
+                            family="SF Pro Display"
+                            fontStyle="normal" 
+                            weight="600" 
+                            size="18px" 
+                            lineHeight="32px" 
+                            display="flex" 
+                            align="flex-start" 
+                            spacing="0.75px" 
+                            transform="capitalize"
+                        />
+                        <div>
+                            <ButtonHeaderCardStyles color={colors.neutral2} size="18px">
+                                <Icons type="ellipsis" className="cardIcon" />
+                            </ButtonHeaderCardStyles>
+                        </div>
+                    </HeaderModelCardStyles>
                     <div>
-                        
+                        {
+                            loading === false && todo.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
+                               <div key={id}>
+                                   <CardModel
+                                        dueDate={dueDate} 
+                                        name={name} 
+                                        pointEstimate={pointEstimate} 
+                                        tags={tags} 
+                                        owner={owner}
+                                    />
+                               </div>
+                           )) 
+                        }
                     </div>
-                </div>
-                <div>
+                </Column>
+
+                <Column>
+                    <HeaderModelCardStyles>
+                        <Title
+                            name={`in progress(${inProgress && inProgress.length})`}
+                            family="SF Pro Display"
+                            fontStyle="normal" 
+                            weight="600" 
+                            size="18px" 
+                            lineHeight="32px" 
+                            display="flex" 
+                            align="flex-start" 
+                            spacing="0.75px" 
+                            transform="capitalize"
+                        />
+                        <div>
+                            <ButtonHeaderCardStyles color={colors.neutral2} size="18px">
+                                <Icons type="ellipsis" className="cardIcon" />
+                            </ButtonHeaderCardStyles>
+                        </div>
+                    </HeaderModelCardStyles>
                     <div>
-                        
+                        {
+                            loading === false && inProgress.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
+                               <div key={id}>
+                                   <CardModel
+                                        dueDate={dueDate} 
+                                        name={name} 
+                                        pointEstimate={pointEstimate} 
+                                        tags={tags} 
+                                        owner={owner}
+                                    />
+                               </div>
+                           )) 
+                        }
                     </div>
-                </div> */}
-            </div>
+                </Column>
+            </DashBoardStyles>
         </div>
     )
 }

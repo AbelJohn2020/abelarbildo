@@ -74,7 +74,7 @@ const CardModel = ({ dueDate, name, pointEstimate, tags, owner }: cardmodel) => 
             </HeaderModelCardStyles>
             <HeaderModelCardStyles>
                 <Title
-                    name={`${estimate} points`}
+                    name={estimate && estimate > 1 ? `${estimate} points` : `${estimate} point`}
                     family="SF Pro Display"
                     fontStyle="normal" 
                     weight="600" 

@@ -21,6 +21,9 @@ export const ContainerModelCard = styled.div`
     box-sizing: border-box;
     color: ${colors.neutral};
     margin: 16px 0 0 0;
+    padding: 16px;
+    background: ${colors.neutral4};
+    border-radius: 8px;
 `;
 
 export const HeaderModelCardStyles = styled.div`

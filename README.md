@@ -27,3 +27,9 @@ Technologies used:
 ReactJS
 GraphQL
 Figma
+
+Profile:
+![profile](https://user-images.githubusercontent.com/69945175/143554448-01577935-cc2b-43c0-aa33-654875bceff1.png)
+
+DashBoard:
+![dashboard](https://user-images.githubusercontent.com/69945175/143554525-1ed2d1fe-9065-4c9b-b91b-001d28578561.png)

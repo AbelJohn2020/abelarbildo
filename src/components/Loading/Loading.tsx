@@ -1,5 +1,4 @@
 import React from 'react';
-import './loading.css';
 import { LoadingStyles, Spiner } from './LoadingStyles';
 
 const Loading = () => {

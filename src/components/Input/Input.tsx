@@ -48,21 +48,21 @@ export const Input = ({
             {
                 isThereFirstIcon && <BoxIconsInput><Icons type={firstIcon} className="iconInput" /></BoxIconsInput>
             }
-            <InputStyles 
-                placeholder={placeholder}
-                autoComplete='off'
-                type={inputType} 
-                name={name}
-                value={value}
-                onChange={onChange}
-                width={width}
-                color={color}
-                border={border}
-                inputPlaceholder={inputPlaceholder}
-                inputPadding={inputPadding}
-                inputMargin={inputMargin}
-                inputBackground={inputBackground}
-            />
+                <InputStyles 
+                    placeholder={placeholder}
+                    autoComplete='off'
+                    type={inputType} 
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    width={width}
+                    color={color}
+                    border={border}
+                    inputPlaceholder={inputPlaceholder}
+                    inputPadding={inputPadding}
+                    inputMargin={inputMargin}
+                    inputBackground={inputBackground}
+                />
             {
                 isThereSecondIcon && <BoxIconsInput><Icons type={secondIcon} className="iconInput" /></BoxIconsInput>
             }

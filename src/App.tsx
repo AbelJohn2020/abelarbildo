@@ -27,6 +27,7 @@ export type prevstate = {
 function App() {
   const [inputValue, setInputValue] = useState<string>('');
   const [selected, setSelected] = useState<Array<prevstate>>(prevState)
+  const [inputValueTaskTitle, setInputValueTaskTitle] = useState<string>('')
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -36,7 +37,7 @@ function App() {
     <>
       <Router>
         <div className="App">
-          <Navbar selected={selected} setSelected={setSelected}/>
+          <Navbar selected={selected} setSelected={setSelected} inputValueTaskTitle={inputValueTaskTitle} setInputValueTaskTitle={setInputValueTaskTitle} />
           <div className='App__right'>
             <Header inputValue={inputValue} handleChange={handleChange} navbarIcons={navbarIcons} selected={selected} />
             <Routes>

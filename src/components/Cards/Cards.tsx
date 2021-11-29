@@ -8,6 +8,7 @@ import { ButtonHeaderCardStyles, HeaderModelCardStyles } from '../CardModel/Card
 import { colors } from '../UI/colors';
 import Icons from '../Icons/Icons';
 import { Column, DashBoardStyles } from './CardsStyles';
+import Loading from '../Loading/Loading';
 
 const Cards = () => {
     const { loading, error, data } = useQuery(TASKS);
@@ -77,17 +78,18 @@ const Cards = () => {
                     </HeaderModelCardStyles>
                     <div>
                         {
-                            loading === false && backlog.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
-                               <div key={id}>
-                                   <CardModel
-                                        dueDate={dueDate} 
-                                        name={name} 
-                                        pointEstimate={pointEstimate} 
-                                        tags={tags} 
-                                        owner={owner}
-                                    />
-                               </div>
-                           )) 
+                            loading ?   <Loading />
+                                    :   backlog.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
+                                            <div key={id}>
+                                                <CardModel
+                                                        dueDate={dueDate} 
+                                                        name={name} 
+                                                        pointEstimate={pointEstimate} 
+                                                        tags={tags} 
+                                                        owner={owner}
+                                                    />
+                                            </div>
+                                        )) 
                         }
                     </div>
                 </Column>
@@ -114,17 +116,18 @@ const Cards = () => {
                     </HeaderModelCardStyles>
                     <div>
                         {
-                            loading === false && todo.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
-                               <div key={id}>
-                                   <CardModel
-                                        dueDate={dueDate} 
-                                        name={name} 
-                                        pointEstimate={pointEstimate} 
-                                        tags={tags} 
-                                        owner={owner}
-                                    />
-                               </div>
-                           )) 
+                            loading ?   <Loading />
+                                    :   todo.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
+                                            <div key={id}>
+                                                <CardModel
+                                                        dueDate={dueDate} 
+                                                        name={name} 
+                                                        pointEstimate={pointEstimate} 
+                                                        tags={tags} 
+                                                        owner={owner}
+                                                    />
+                                            </div>
+                                        ))
                         }
                     </div>
                 </Column>
@@ -151,17 +154,18 @@ const Cards = () => {
                     </HeaderModelCardStyles>
                     <div>
                         {
-                            loading === false && inProgress.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
-                               <div key={id}>
-                                   <CardModel
-                                        dueDate={dueDate} 
-                                        name={name} 
-                                        pointEstimate={pointEstimate} 
-                                        tags={tags} 
-                                        owner={owner}
-                                    />
-                               </div>
-                           )) 
+                            loading ?   <Loading />
+                                    :   inProgress.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
+                                            <div key={id}>
+                                                <CardModel
+                                                        dueDate={dueDate} 
+                                                        name={name} 
+                                                        pointEstimate={pointEstimate} 
+                                                        tags={tags} 
+                                                        owner={owner}
+                                                    />
+                                            </div>
+                                        )) 
                         }
                     </div>
                 </Column>

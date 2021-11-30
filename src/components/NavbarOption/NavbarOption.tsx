@@ -17,7 +17,7 @@ export type navbarOption = {
 
 const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOption) => {
     
-    const handleClick = (event: any) => {
+    const handleClick = (event: { currentTarget: { id: string } }) => {
         const newArr = selected.map((prevState) => {
             if(prevState.id === event.currentTarget.id ) {
                 return { id: prevState.id, active: prevState.active = true }
@@ -33,7 +33,7 @@ const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOpt
     }
 
     const findTrue = (divId: string) => {
-        if((e: any) => handleClick(e)) {
+        if((e: { currentTarget: { id: string } }) => handleClick(e)) {
             return selected.find(({id, active}) => divId === id && active === true)
         }
     }

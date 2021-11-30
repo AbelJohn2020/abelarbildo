@@ -6,7 +6,7 @@ export const UserStyles = styled.div`
 `;
 
 export const DefaulPhoto = styled.div`
-    width: 6.4%;
+    width: 16%;
     margin: 0 0 24px 0 ;
     padding: 16px;
     display: flex;
@@ -27,4 +27,19 @@ export const DefaulPhoto = styled.div`
         font-size: 40px;
         box-sizing: border-box;
     }
+`;
+
+export const BoxInformation = styled.div`
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+`;
+
+export const BoxInformationSon = styled.div`
+    width: 40%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: : center;
 `;

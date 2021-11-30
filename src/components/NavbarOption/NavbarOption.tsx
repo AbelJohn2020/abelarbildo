@@ -41,8 +41,8 @@ const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOpt
     const blankSpace = findTrue(id) !== undefined && findTrue(id);
 
     return (
-        <NavbarOptionStyles id={id} state={blankSpace} onClick={handleClick}>
-            <Link to={link} className='navbarOption' id={id}>
+        <NavbarOptionStyles id={id} state={blankSpace}>
+            <Link to={link} className='navbarOption' id={id} onClick={handleClick}>
                 <BoxIcon background={colors.neutral4}>
                     <Icons type={type} className="icons" />
                 </BoxIcon>

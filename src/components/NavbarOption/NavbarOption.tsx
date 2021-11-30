@@ -33,7 +33,7 @@ const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOpt
     }
 
     const findTrue = (divId: string) => {
-        if(() => handleClick) {
+        if((e: { currentTarget: { id: string } }) => handleClick(e)) {
             return selected.find(({id, active}) => divId === id && active === true)
         }
     }

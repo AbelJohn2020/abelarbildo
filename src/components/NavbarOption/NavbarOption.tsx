@@ -17,7 +17,7 @@ export type navbarOption = {
 
 const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOption) => {
     
-    const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleClick = (event: any) => {
         const newArr = selected.map((prevState) => {
             if(prevState.id === event.currentTarget.id ) {
                 return { id: prevState.id, active: prevState.active = true }
@@ -33,7 +33,7 @@ const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOpt
     }
 
     const findTrue = (divId: string) => {
-        if((e: React.ChangeEvent<HTMLInputElement>) => handleClick(e)) {
+        if((e: any) => handleClick(e)) {
             return selected.find(({id, active}) => divId === id && active === true)
         }
     }
@@ -41,8 +41,8 @@ const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOpt
     const blankSpace = findTrue(id) !== undefined && findTrue(id);
 
     return (
-        <NavbarOptionStyles id={id} state={blankSpace}>
-            <Link to={link} className='navbarOption' id={id} onClick={handleClick}>
+        <NavbarOptionStyles id={id} state={blankSpace} onClick={handleClick}>
+            <Link to={link} className='navbarOption' id={id}>
                 <BoxIcon background={colors.neutral4}>
                     <Icons type={type} className="icons" />
                 </BoxIcon>
@@ -55,8 +55,8 @@ const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOpt
                     lineHeight="24px"
                     display="flex"
                     align="center"
-                    transform="uppercase"
                     spacing="0.75px"
+                    transform="uppercase"
                 />
             </Link>
             <div className="red"></div>

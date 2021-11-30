@@ -17,7 +17,7 @@ export type navbarOption = {
 
 const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOption) => {
     
-    const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleClick = (event: { currentTarget: { id: string } }) => {
         const newArr = selected.map((prevState) => {
             if(prevState.id === event.currentTarget.id ) {
                 return { id: prevState.id, active: prevState.active = true }

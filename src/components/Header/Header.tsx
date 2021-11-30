@@ -51,7 +51,7 @@ const Header = ({inputValue, handleChange, navbarIcons, selected, plus, setPlus,
             radius="16px"
             background={colors.neutral4}
           />
-          <HeaderIconsPLus plus={plus} width="68">
+          <HeaderIconsPLus plus={plus} width="66.2">
             <HeaderIcons>
               {
                 navbarIcons.map(({id, type}) => (

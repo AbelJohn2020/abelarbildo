@@ -37,10 +37,19 @@ const Cards = () => {
             return tasks;
         }
     }
+
+    const getCancelled = () => {
+        if(tasks !== undefined) {
+            return tasks.filter(({status}: Task) => status.toString() === "CANCELLED" );
+        } else {
+            return tasks;
+        }
+    }
     
     const backlog = getBacklog();
     const inProgress = getInProgress();
     const todo = getTodo();
+    const cancelled = getCancelled();
 
     return (
         <div>
@@ -151,6 +160,44 @@ const Cards = () => {
                         {
                             loading ?   <Loading />
                                     :   inProgress.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
+                                            <div key={id}>
+                                                <CardModel
+                                                        dueDate={dueDate} 
+                                                        name={name} 
+                                                        pointEstimate={pointEstimate} 
+                                                        tags={tags} 
+                                                        owner={owner}
+                                                    />
+                                            </div>
+                                        )) 
+                        }
+                    </div>
+                </Column>
+
+                <Column>
+                    <HeaderModelCardStyles>
+                        <Title
+                            name={`cancelled(${cancelled && cancelled.length})`}
+                            family="SF Pro Display"
+                            fontStyle="normal" 
+                            weight="600" 
+                            size="18px" 
+                            lineHeight="32px" 
+                            display="flex" 
+                            align="flex-start" 
+                            spacing="0.75px" 
+                            transform="capitalize"
+                        />
+                        <div>
+                            <ButtonHeaderCardStyles color={colors.neutral2} size="18px">
+                                <Icons type="ellipsis" className="cardIcon" />
+                            </ButtonHeaderCardStyles>
+                        </div>
+                    </HeaderModelCardStyles>
+                    <div>
+                        {
+                            loading ?   <Loading />
+                                    :   cancelled.map(({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
                                             <div key={id}>
                                                 <CardModel
                                                         dueDate={dueDate} 

@@ -27,6 +27,6 @@ export const ButtonStyles = styled.button(({ border, clickedColor, color, state 
     .icons {
         color: ${ state && state.active === (undefined || false) ? color : (state && state.active === true && clickedColor) };
         background: transparent;
-        font-size: 18px;
+        font-size: 28px;
     }
 `);

@@ -5,8 +5,8 @@ export const DashBoardStyles = styled.div`
     width: 100%;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 30.8% 30.8% 30.8%;
-    gap: 32px;
+    grid-template-columns: 24% 24% 24% 24%;
+    gap: 16px;
 `;
 
 export const Column = styled.div`

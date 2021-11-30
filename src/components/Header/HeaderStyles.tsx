@@ -11,7 +11,7 @@ export const HeaderIconsPLus = styled.div(({plus, width}: headericons) => css`
     width: 100%;
     display: grid;
     grid-template-columns: ${plus ? `${width}% ${100 - Number(width)}%` : `94% 6%`};
-    padding: 36px 0 20px 0;
+    padding: ${plus ? "36px 0 20px 0" : "36px 0 110px 0"};
     box-sizing: border-box;
 `);
 
@@ -42,6 +42,6 @@ export const PlusButton = styled.button`
     .plusIcon {
         color: ${colors.neutral};
         background: transparent;
-        font-size: 18px;
+        font-size: 28px;
     }
 `;

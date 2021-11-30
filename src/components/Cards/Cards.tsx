@@ -42,11 +42,6 @@ const Cards = () => {
     const inProgress = getInProgress();
     const todo = getTodo();
 
-    console.log(backlog)
-    console.log(inProgress)
-    console.log(todo, 'todo')
-    console.log(loading, 'load')
-
     return (
         <div>
             {

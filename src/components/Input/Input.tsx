@@ -21,6 +21,8 @@ type input = {
     inputPadding: string,
     inputMargin: string,
     inputBackground: string,
+    radius: string,
+    background: string,
 }
 
 export const Input = ({ 
@@ -42,9 +44,11 @@ export const Input = ({
     inputPadding, 
     inputMargin, 
     inputBackground,
+    radius,
+    background
 }: input) => {
     return (
-        <BoxInput isThereFirstIcon={isThereFirstIcon} isThereSecondIcon={isThereSecondIcon} photo={photo}>
+        <BoxInput isThereFirstIcon={isThereFirstIcon} isThereSecondIcon={isThereSecondIcon} photo={photo} radius={radius} background={background}>
             {
                 isThereFirstIcon && <BoxIconsInput><Icons type={firstIcon} className="iconInput" /></BoxIconsInput>
             }

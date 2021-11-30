@@ -1,13 +1,19 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { colors } from "../UI/colors";
 
-export const HeaderIconsPLus = styled.div`
+type headericons = {
+    plus: boolean,
+    width: string,
+}
+
+export const HeaderIconsPLus = styled.div(({plus, width}: headericons) => css`
     width: 100%;
     display: grid;
-    grid-template-columns: 94% 6%;
+    grid-template-columns: ${plus ? `${width}% ${100 - Number(width)}%` : `94% 6%`};
     padding: 36px 0 20px 0;
     box-sizing: border-box;
-`;
+`);
 
 export const HeaderIcons = styled.div`
     width: 100%;
@@ -18,7 +24,7 @@ export const HeaderIcons = styled.div`
 
 export const PlusBox = styled.div`
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 `;
 

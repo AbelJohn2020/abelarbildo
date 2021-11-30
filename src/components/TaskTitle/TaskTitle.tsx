@@ -1,6 +1,9 @@
 import React from 'react'
 import { Input } from '../Input/Input';
 import { colors } from '../UI/colors';
+import Mplus from '../iconsImages/minusplus.png';
+import Icons from '../Icons/Icons';
+import { BoxCC, BoxIconsButtonsTT, ButtonsTT, NameButtonsTT, TaskTitleStyles } from './TaskTitleStyles';
 
 type taskTitle = {
     inputValueTaskTitle: string,
@@ -12,7 +15,7 @@ const TaskTitle = ({inputValueTaskTitle, setInputValueTaskTitle}: taskTitle) => 
         setInputValueTaskTitle(event.target.value)
     }
     return (
-        <div>
+        <TaskTitleStyles>
             <Input
                 inputType="text"
                 name="taskTitle"
@@ -29,11 +32,43 @@ const TaskTitle = ({inputValueTaskTitle, setInputValueTaskTitle}: taskTitle) => 
                 color={colors.neutral}
                 border="none"
                 inputPlaceholder={colors.neutral2}  
-                inputPadding="16px" 
+                inputPadding="6px 0" 
                 inputMargin="0" 
                 inputBackground="transparent"
+                radius="0"
+                background={colors.neutral3}
             />
-        </div>
+            
+            <BoxIconsButtonsTT margin="8px 0 16px 0">
+                <ButtonsTT background={colors.background} color={colors.neutral2} margin="0 8px 0 0">
+                    <i className='iconImageTT'>
+                        <img src={Mplus} alt="icon minus plus"/>
+                    </i>
+                    <NameButtonsTT>estimate</NameButtonsTT>
+                </ButtonsTT>
+
+                <ButtonsTT background={colors.background} color={colors.neutral2} margin="0 8px 0 0">
+                    <Icons type="assignee" className="icons" />
+                    <NameButtonsTT>assignee</NameButtonsTT>
+                </ButtonsTT>
+
+                <ButtonsTT background={colors.background} color={colors.neutral2} margin="0">
+                    <Icons type="label" className="icons" />
+                    <NameButtonsTT>label</NameButtonsTT>
+                </ButtonsTT>
+            </BoxIconsButtonsTT>
+
+            <BoxCC>
+                <BoxIconsButtonsTT margin="0">
+                    <ButtonsTT background={colors.background} color={colors.neutral2} margin="0 8px 0 0">
+                        <NameButtonsTT>cancel</NameButtonsTT>
+                    </ButtonsTT>
+                    <ButtonsTT background={colors.background} color={colors.neutral2} margin="0">
+                        <NameButtonsTT>create</NameButtonsTT>
+                    </ButtonsTT>
+                </BoxIconsButtonsTT>
+            </BoxCC>
+        </TaskTitleStyles>
     )
 }
 

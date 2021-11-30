@@ -6,6 +6,8 @@ type boxInput = {
     isThereFirstIcon: boolean,
     isThereSecondIcon: boolean,
     photo: boolean,
+    radius: string,
+    background: string,
 }
 
 type input = {
@@ -18,7 +20,7 @@ type input = {
     inputBackground: string,
 }
 
-export const BoxInput = styled.div(({isThereFirstIcon, isThereSecondIcon, photo}: boxInput) => css`
+export const BoxInput = styled.div(({isThereFirstIcon, isThereSecondIcon, photo, radius, background}: boxInput) => css`
     width: 100%;
     box-sizing: border-box;
     display: grid;
@@ -37,8 +39,9 @@ export const BoxInput = styled.div(({isThereFirstIcon, isThereSecondIcon, photo}
     };
     align-items: center;
     padding: 0 12px;
-    background: ${colors.neutral4};
-    border-radius: 16px;
+    background: ${background};
+    border-radius: ${radius};
+
 `);
 
 export const InputStyles = styled.input(({ width, color, border, inputPlaceholder, inputPadding, inputMargin, inputBackground }: input) => css`
@@ -53,6 +56,7 @@ export const InputStyles = styled.input(({ width, color, border, inputPlaceholde
 
     &::placeholder {
         color: ${inputPlaceholder};
+        text-transform: capitalize;
     }
 `);
 

@@ -3,6 +3,7 @@ import { prevstate } from '../../App'
 import { Button } from '../Buttons/Buttons'
 import Icons from '../Icons/Icons'
 import { Input } from '../Input/Input'
+import TaskTitle from '../TaskTitle/TaskTitle'
 import { colors } from '../UI/colors'
 import { HeaderIcons, HeaderIconsPLus, PlusBox, PlusButton } from './HeaderStyles'
 
@@ -16,9 +17,16 @@ type header = {
     handleChange: React.ChangeEventHandler<HTMLInputElement>,
     navbarIcons: navIcons[],
     selected: prevstate[],
+    plus: boolean,
+    setPlus: React.Dispatch<React.SetStateAction<boolean>>,
+    inputValueTaskTitle: string,
+    setInputValueTaskTitle: React.Dispatch<React.SetStateAction<string>>,
 }
 
-const Header = ({inputValue, handleChange, navbarIcons, selected}: header) => {
+const Header = ({inputValue, handleChange, navbarIcons, selected, plus, setPlus, inputValueTaskTitle, setInputValueTaskTitle}: header) => {
+    const handleClick = () => {
+      setPlus(!plus)
+    }
     return (
         <div className="App__right--icons">
           <Input 
@@ -40,8 +48,10 @@ const Header = ({inputValue, handleChange, navbarIcons, selected}: header) => {
             inputPadding="20px 0"
             inputMargin="0"
             inputBackground="transparent"
+            radius="16px"
+            background={colors.neutral4}
           />
-          <HeaderIconsPLus>
+          <HeaderIconsPLus plus={plus} width="68">
             <HeaderIcons>
               {
                 navbarIcons.map(({id, type}) => (
@@ -58,7 +68,10 @@ const Header = ({inputValue, handleChange, navbarIcons, selected}: header) => {
               }
             </HeaderIcons>
               <PlusBox>
-                <PlusButton>
+              {
+                plus && <TaskTitle inputValueTaskTitle={inputValueTaskTitle} setInputValueTaskTitle={setInputValueTaskTitle} />
+              }
+                <PlusButton onClick={handleClick}>
                   <Icons type="plus" className="plusIcon" />
                 </PlusButton>
               </PlusBox>

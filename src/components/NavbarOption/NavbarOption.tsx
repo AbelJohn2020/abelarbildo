@@ -55,8 +55,8 @@ const NavbarOption = ({ id, link, name, type, selected, setSelected }: navbarOpt
                     lineHeight="24px"
                     display="flex"
                     align="center"
-                    spacing="0.75px"
                     transform="uppercase"
+                    spacing="0.75px"
                 />
             </Link>
             <div className="red"></div>

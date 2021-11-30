@@ -6,10 +6,10 @@
 .App {
     width: 100%;
     background: #222528;
+    box-sizing: border-box;
     display: grid;
     padding: 32px 36px 0 32px;
     grid-template-columns: 20% 78%;
     gap: 32px;
     grid-template-rows: 100%;
-    box-sizing: border-box;
 }

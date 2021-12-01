@@ -54,9 +54,6 @@ const Cards = () => {
     return (
         <div>
             {
-                loading && <p>Loading...</p>
-            }
-            {
                 error && <p>Error 404</p>
             }
             <DashBoardStyles>

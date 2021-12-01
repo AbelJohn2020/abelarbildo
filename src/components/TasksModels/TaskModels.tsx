@@ -1,27 +1,28 @@
-import React from 'react'
-import wordsToNumbers from 'words-to-numbers'
-import Icons from '../Icons/Icons'
-import { taskmodelname, taskmodels, taskmodeltitle } from './TaskModelsType'
+import React from 'react';
+import wordsToNumbers from 'words-to-numbers';
+import Icons from '../Icons/Icons';
+import { BoxGlobalTask, BoxTaskTag, ButtonTask, H1TaskTitleStyles, Img, Lenght, LimitAndPadding, TaskAssign, TaskModelNameStyles, TaskTitleStyles } from './TaskModelStyles';
+import { taskmodelname, taskmodels, taskmodeltitle } from './TaskModelsType';
 
 export const TaskModelTitle = ({firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn}: taskmodeltitle) => {
     return (
-        <div>
-            <div>
-                <h1># {firstColumn}</h1>
-            </div>
-            <div>
-                <h1>{secondColumn}</h1>
-            </div>
-            <div>
-                <h1>{thirdColumn}</h1>
-            </div>
-            <div>
-                <h1>{fourthColumn}</h1>
-            </div>
-            <div>
-                <h1>{fifthColumn}</h1>
-            </div>
-        </div>
+        <BoxGlobalTask grid="35.5% 18% 10% 20% 16%" margin="0 0 18px 0">
+            <TaskTitleStyles radius="4px 0 0 4px">
+                <H1TaskTitleStyles size="18px" weight="normal" lineHeight="24px" padding="18px"># {firstColumn}</H1TaskTitleStyles>
+            </TaskTitleStyles>
+            <TaskTitleStyles radius="0">
+                <H1TaskTitleStyles size="18px" weight="normal" lineHeight="24px" padding="18px">{secondColumn}</H1TaskTitleStyles>
+            </TaskTitleStyles>
+            <TaskTitleStyles radius="0">
+                <H1TaskTitleStyles size="18px" weight="normal" lineHeight="24px" padding="18px">{thirdColumn}</H1TaskTitleStyles>
+            </TaskTitleStyles>
+            <TaskTitleStyles radius="0">
+                <H1TaskTitleStyles size="18px" weight="normal" lineHeight="24px" padding="18px">{fourthColumn}</H1TaskTitleStyles>
+            </TaskTitleStyles>
+            <TaskTitleStyles radius="0 4px 4px 0">
+                <H1TaskTitleStyles size="18px" weight="normal" lineHeight="24px" padding="18px">{fifthColumn}</H1TaskTitleStyles>
+            </TaskTitleStyles>
+        </BoxGlobalTask>
     )
 }
 
@@ -66,30 +67,37 @@ export const TaskModels = ({ title, tasksTags, pointEstimate, image, name, tasks
     const dueDt = convertDueDate();
 
     return (
-        <div>
-            <div>
-                <h1>{title}</h1>
-            </div>
-            <div>
-                {
-                    tasksTags && tasksTags.length > 1 
-                        ?   tasksTags.map( (task: any) => (
-                            <div key={task}>{task}</div>
-                        ))
-                        :   <div>{tasksTags}</div>
-                }
-            </div>
-            <div>
-                {estimate}
-            </div>
-            <div>
-                <img src={image} alt={name} />
-                <h1>{tasksAssignName}</h1>
-            </div>
-            <div>
-                {dueDt}
-            </div>
-        </div>
+        <BoxGlobalTask grid="35.5% 18% 10% 20% 16%" margin="0">
+            <TaskTitleStyles radius="0">
+                <H1TaskTitleStyles size="18px" weight="400" lineHeight="24px" padding="16px">{title}</H1TaskTitleStyles>
+            </TaskTitleStyles>
+            <TaskTitleStyles radius="0">
+                <LimitAndPadding>
+                    {
+                        tasksTags && tasksTags.length > 1 
+                            // ?   tasksTags.map( (task: any) => (
+                            //     <BoxTaskTag key={task} tag={task.toString()}>{task}</BoxTaskTag>
+                            // ))
+                            ?   <div>
+                                    <BoxTaskTag tag={tasksTags[0].toString()}>{tasksTags[0]}</BoxTaskTag>
+                                </div>
+                            :   <BoxTaskTag tag={tasksTags.toString()}>{tasksTags}</BoxTaskTag>
+                            
+                    }
+                </LimitAndPadding>
+            </TaskTitleStyles>
+            <TaskTitleStyles radius="0">
+                <H1TaskTitleStyles size="18px" weight="400" lineHeight="24px" padding="16px">{estimate} points</H1TaskTitleStyles>
+                
+            </TaskTitleStyles>
+            <TaskAssign>
+                <Img src={image} alt={name} />
+                <H1TaskTitleStyles size="18px" weight="400" lineHeight="24px" padding="0">{tasksAssignName}</H1TaskTitleStyles>
+            </TaskAssign>
+            <TaskTitleStyles radius="0">
+                <H1TaskTitleStyles size="18px" weight="400" lineHeight="24px" padding="16px">{dueDt}</H1TaskTitleStyles>
+            </TaskTitleStyles>
+        </BoxGlobalTask>
     )
 }
 
@@ -107,14 +115,22 @@ export const TaskModelName = ({id, title, icon, length, state, setState}: taskmo
         setState(newArr);
     }
 
+    const isTrue = (divId: string) => {
+        return state.find(({ id }) => divId === id )
+    }
+
+    const separation = isTrue && isTrue(id);
+
     return(
-        <div id={id}>
-            <button name={title} id={id} onClick={handleClick}>
+        <TaskModelNameStyles id={id} separation={separation}>
+            <ButtonTask name={title} id={id} onClick={handleClick}>
                 <Icons type={icon} className="iconTMN"/>
-            </button>
+            </ButtonTask>
             <div>
-                <h1>{`${title}(${length})`}</h1>
+                <H1TaskTitleStyles size="20px" weight="600" lineHeight="32px" padding="0 0 0 4px">
+                    {title}<Lenght>{`(0${length})`}</Lenght>
+                </H1TaskTitleStyles>
             </div>
-        </div>
+        </TaskModelNameStyles>
     )
 }

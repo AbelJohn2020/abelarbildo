@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Icons from '../Icons/Icons';
 import { Title } from '../Titles/Titles';
 import wordsToNumbers from 'words-to-numbers';

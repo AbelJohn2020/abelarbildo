@@ -3,7 +3,7 @@ import { colors } from "../UI/colors";
 
 export const NavbarStyles = styled.div`
     width: 100%;
-    height: 100vh;
+    min-height: 90.5vh;
     background: ${colors.neutral4};
     box-sizing: border-box;
     border-radius: 24px;

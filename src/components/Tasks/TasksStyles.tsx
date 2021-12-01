@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { State } from "./TasksType";
 
-type boxTaskStylesType = {
+export type boxTaskStylesType = {
     showHide: State | undefined;
 }
 

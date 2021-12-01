@@ -95,7 +95,7 @@ const Tasks = () => {
                                     }
                                 </div>
                             </div>
-                            <BoxTasksStyles id='2' showHide={findTrue('2')}>
+                            <div>
                                 <TaskModelName state={showHide} setState={setShowHide} id="2" title="todo" icon="down" length={todo && todo.length} />
                                 <div>
                                     {
@@ -114,8 +114,8 @@ const Tasks = () => {
                                         ))
                                     }
                                 </div>
-                            </BoxTasksStyles>
-                            <BoxTasksStyles id='3' showHide={findTrue('3')}>
+                            </div>
+                            <div>
                                 <TaskModelName state={showHide} setState={setShowHide} id="3" title="in progress" icon="down" length={inProgress && inProgress.length} />
                                 <div>
                                     {
@@ -134,8 +134,8 @@ const Tasks = () => {
                                         ))
                                     }
                                 </div>
-                            </BoxTasksStyles>
-                            <BoxTasksStyles id='4' showHide={findTrue('4')}>
+                            </div>
+                            <div>
                                 <TaskModelName state={showHide} setState={setShowHide} id="4" title="cancelled" icon="down" length={cancelled && cancelled.length} />
                                 <div>
                                     {
@@ -154,7 +154,7 @@ const Tasks = () => {
                                         ))
                                     }
                                 </div>
-                            </BoxTasksStyles>
+                            </div>
                         </div>
             }
         </div>

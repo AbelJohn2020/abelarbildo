@@ -67,8 +67,8 @@ export const BoxDay = styled.div`
 
 export const BoxTagCard = styled.div(({tag}: tag) => `
     padding: 4px 16px;
-    background: ${(tag === "ANDROID" || tag === "IOS") ? colors.backgroundS : colors.backgroundT};
-    color: ${(tag === "ANDROID" || tag === "IOS") ? colors.secondary : colors.tertiary};
+    background: ${(tag === "ANDROID" || tag==="NODE_JS") ? colors.backgroundS : colors.backgroundT};
+    color: ${(tag === "ANDROID" || tag==="NODE_JS") ? colors.secondary : colors.tertiary};
     margin: 0 8px 0 0;
 `);
 

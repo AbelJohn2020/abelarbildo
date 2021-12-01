@@ -94,10 +94,22 @@ export const TaskModels = ({ title, tasksTags, pointEstimate, image, name, tasks
 }
 
 
-export const TaskModelName = ({title, icon, length}: taskmodelname) => {
+export const TaskModelName = ({id, title, icon, length, state, setState}: taskmodelname) => {
+    const handleClick = (event: { currentTarget: { id: string } }) => {
+        const newArr = state.map((prevState) => {
+            if(prevState.id === event.currentTarget.id ) {
+                return { ...prevState, show:!(prevState.show) }
+            } else {
+                return { ...prevState };
+            }
+        });
+
+        setState(newArr);
+    }
+
     return(
-        <div>
-            <button name={title}>
+        <div id={id}>
+            <button name={title} id={id} onClick={handleClick}>
                 <Icons type={icon} className="iconTMN"/>
             </button>
             <div>

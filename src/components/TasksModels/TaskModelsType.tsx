@@ -1,3 +1,5 @@
+import { State } from "../Tasks/TasksType"
+
 export type taskmodeltitle = {
     firstColumn: string,
     secondColumn: string,
@@ -8,9 +10,12 @@ export type taskmodeltitle = {
 }
 
 export type taskmodelname = {
+    id: string,
     title: string,
     icon: string,
     length: string,
+    state: State[],
+    setState: React.Dispatch<React.SetStateAction<State[]>>,
 }
 
 export type taskmodels = {

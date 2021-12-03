@@ -7,8 +7,6 @@ import NavbarOption from '../NavbarOption/NavbarOption';
 export type navbar = {
     selected: prevstate[],
     setSelected: React.Dispatch<React.SetStateAction<prevstate[]>>,
-    inputValueTaskTitle: string,
-    setInputValueTaskTitle: React.Dispatch<React.SetStateAction<string>>
 }
 
 const options = [

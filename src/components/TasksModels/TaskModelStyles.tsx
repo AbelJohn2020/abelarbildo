@@ -120,7 +120,29 @@ export const BoxTaskTag = styled.div(({tag}: tag) => `
 `);
 
 export const LimitAndPadding = styled.div`
-    box-sizing: boder-box;
+    width: 100%;
     padding: 8px 16px;
     display: flex;
+`;
+
+export const BoxTasksTagsLength = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
+`;
+
+export const TasksTagsLength = styled.div`
+    padding: 4px 12px;
+    box-sizing: boder-box;
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: capitalize;
+    letter-spacing: 0.75px;
+    display: flex;
+    background: ${colors.background};
+    border-radius: 4px;
 `;

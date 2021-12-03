@@ -1,10 +1,9 @@
-import { useQuery } from '@apollo/client';
+import { ApolloError } from '@apollo/client';
 import React, { useState } from 'react'
 import { Task } from '../Cards/TypeCard';
 import Loading from '../Loading/Loading';
-import { TASKS } from '../queries/queries';
 import { TaskModelName, TaskModels, TaskModelTitle } from '../TasksModels/TaskModels';
-import { BoxTasksStyles } from './TasksStyles';
+import { BoxTasksStyles, TaskTagsStyles } from './TasksStyles';
 import { State, taskmodels } from './TasksType';
 
 const state = [
@@ -14,9 +13,13 @@ const state = [
     { id: "4", show: true, name: "cancelled" },
 ];
 
-const Tasks = () => {
-    const { loading, error, data } = useQuery(TASKS);
-    const { tasks } = (data !== undefined) && data;
+type task = {
+    loading: boolean,
+    error: ApolloError | undefined,
+    tasks: undefined | any,
+}
+
+const Tasks = ({ loading, error, tasks }: task) => {
     
     const [showHide, setShowHide] = useState<State[]>(state)
 
@@ -76,7 +79,7 @@ const Tasks = () => {
                     :   <div>
                             <div>
                                 <TaskModelName id="1" title="backlog" icon="down" length={backlog && backlog.length} state={showHide} setState={setShowHide} />
-                                <div>
+                                <TaskTagsStyles id="1" showHide={findTrue('1')}>
                                     {
                                         backlog && backlog.map(({ id, name, pointEstimate, tags, owner, dueDate }: taskmodels) => (
                                             <BoxTasksStyles key={id} id='1' showHide={findTrue('1')}>
@@ -93,11 +96,11 @@ const Tasks = () => {
                                             </BoxTasksStyles>
                                         ))
                                     }
-                                </div>
+                                </TaskTagsStyles>
                             </div>
                             <div>
                                 <TaskModelName state={showHide} setState={setShowHide} id="2" title="todo" icon="down" length={todo && todo.length} />
-                                <div>
+                                <TaskTagsStyles id="2" showHide={findTrue('2')}>
                                     {
                                         todo && todo.map(({ id, name, pointEstimate, tags, owner, dueDate}: taskmodels) => (
                                             <BoxTasksStyles key={id} id='2' showHide={findTrue('2')}>
@@ -113,11 +116,11 @@ const Tasks = () => {
                                             </BoxTasksStyles>
                                         ))
                                     }
-                                </div>
+                                </TaskTagsStyles>
                             </div>
                             <div>
                                 <TaskModelName state={showHide} setState={setShowHide} id="3" title="in progress" icon="down" length={inProgress && inProgress.length} />
-                                <div>
+                                <TaskTagsStyles id="4" showHide={findTrue('3')}>
                                     {
                                         inProgress && inProgress.map(({ id, name, pointEstimate, tags, owner, dueDate}: taskmodels) => (
                                             <BoxTasksStyles key={id} id='3' showHide={findTrue('3')}>
@@ -133,7 +136,7 @@ const Tasks = () => {
                                             </BoxTasksStyles>
                                         ))
                                     }
-                                </div>
+                                </TaskTagsStyles>
                             </div>
                             <div>
                                 <TaskModelName state={showHide} setState={setShowHide} id="4" title="cancelled" icon="down" length={cancelled && cancelled.length} />

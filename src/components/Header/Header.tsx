@@ -1,8 +1,9 @@
 import React from 'react'
-import { prevstate } from '../../App'
+import { globalstate, prevstate } from '../../App'
 import { Button } from '../Buttons/Buttons'
 import Icons from '../Icons/Icons'
 import { Input } from '../Input/Input'
+import { taskmodels } from '../Tasks/TasksType'
 import TaskTitle from '../TaskTitle/TaskTitle'
 import { colors } from '../UI/colors'
 import { HeaderIcons, HeaderIconsPLus, PlusBox, PlusButton } from './HeaderStyles'
@@ -19,14 +20,25 @@ type header = {
     selected: prevstate[],
     plus: boolean,
     setPlus: React.Dispatch<React.SetStateAction<boolean>>,
-    inputValueTaskTitle: string,
-    setInputValueTaskTitle: React.Dispatch<React.SetStateAction<string>>,
+    tasks: taskmodels[],
+    globalState: globalstate,
+    setGlobalData: React.Dispatch<React.SetStateAction<globalstate>>,
 }
 
-const Header = ({inputValue, handleChange, navbarIcons, selected, plus, setPlus, inputValueTaskTitle, setInputValueTaskTitle}: header) => {
+const Header = ({inputValue, handleChange, navbarIcons, selected, plus, setPlus, tasks, globalState, setGlobalData}: header) => {
+
     const handleClick = () => {
       setPlus(!plus)
+
+      setGlobalData({
+        taskTitleInput: '',
+        estimate: '',
+        assignee: '',
+        label: '',
+        dueDate: '',
+    })
     }
+    
     return (
         <div className="App__right--icons">
           <Input 
@@ -51,7 +63,7 @@ const Header = ({inputValue, handleChange, navbarIcons, selected, plus, setPlus,
             radius="16px"
             background={colors.neutral4}
           />
-          <HeaderIconsPLus plus={plus} width="66.2">
+          <HeaderIconsPLus plus={plus} width="64.8">
             <HeaderIcons>
               {
                 navbarIcons.map(({id, type}) => (
@@ -67,14 +79,19 @@ const Header = ({inputValue, handleChange, navbarIcons, selected, plus, setPlus,
                 ))
               }
             </HeaderIcons>
-              <PlusBox>
+            <PlusBox>
               {
-                plus && <TaskTitle inputValueTaskTitle={inputValueTaskTitle} setInputValueTaskTitle={setInputValueTaskTitle} />
+                plus && <TaskTitle 
+                          setIsActive={setPlus}
+                          tasks={tasks}
+                          globalState={globalState}
+                          setGlobalData={setGlobalData}
+                        />
               }
-                <PlusButton onClick={handleClick}>
-                  <Icons type="plus" className="plusIcon" />
-                </PlusButton>
-              </PlusBox>
+              <PlusButton onClick={handleClick}>
+                <Icons type="plus" className="plusIcon" />
+              </PlusButton>
+            </PlusBox>
           </HeaderIconsPLus>
         </div>
     )

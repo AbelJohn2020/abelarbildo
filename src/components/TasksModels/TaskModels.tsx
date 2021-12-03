@@ -1,12 +1,12 @@
 import React from 'react';
 import wordsToNumbers from 'words-to-numbers';
 import Icons from '../Icons/Icons';
-import { BoxGlobalTask, BoxTaskTag, ButtonTask, H1TaskTitleStyles, Img, Lenght, LimitAndPadding, TaskAssign, TaskModelNameStyles, TaskTitleStyles } from './TaskModelStyles';
+import { BoxGlobalTask, BoxTasksTagsLength, BoxTaskTag, ButtonTask, H1TaskTitleStyles, Img, Lenght, LimitAndPadding, TaskAssign, TaskModelNameStyles, TasksTagsLength, TaskTitleStyles } from './TaskModelStyles';
 import { taskmodelname, taskmodels, taskmodeltitle } from './TaskModelsType';
 
 export const TaskModelTitle = ({firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn}: taskmodeltitle) => {
     return (
-        <BoxGlobalTask grid="35.5% 18% 10% 20% 16%" margin="0 0 18px 0">
+        <BoxGlobalTask grid="35.5% 16% 12% 20% 16%" margin="0 0 18px 0">
             <TaskTitleStyles radius="4px 0 0 4px">
                 <H1TaskTitleStyles size="18px" weight="normal" lineHeight="24px" padding="18px"># {firstColumn}</H1TaskTitleStyles>
             </TaskTitleStyles>
@@ -67,7 +67,7 @@ export const TaskModels = ({ title, tasksTags, pointEstimate, image, name, tasks
     const dueDt = convertDueDate();
 
     return (
-        <BoxGlobalTask grid="35.5% 18% 10% 20% 16%" margin="0">
+        <BoxGlobalTask grid="35.5% 16% 12% 20% 16%" margin="0">
             <TaskTitleStyles radius="0">
                 <H1TaskTitleStyles size="18px" weight="400" lineHeight="24px" padding="16px">{title}</H1TaskTitleStyles>
             </TaskTitleStyles>
@@ -75,12 +75,10 @@ export const TaskModels = ({ title, tasksTags, pointEstimate, image, name, tasks
                 <LimitAndPadding>
                     {
                         tasksTags && tasksTags.length > 1 
-                            // ?   tasksTags.map( (task: any) => (
-                            //     <BoxTaskTag key={task} tag={task.toString()}>{task}</BoxTaskTag>
-                            // ))
-                            ?   <div>
+                            ?   <BoxTasksTagsLength>
                                     <BoxTaskTag tag={tasksTags[0].toString()}>{tasksTags[0]}</BoxTaskTag>
-                                </div>
+                                    <TasksTagsLength>+{tasksTags.length -1}</TasksTagsLength>
+                                </BoxTasksTagsLength>
                             :   <BoxTaskTag tag={tasksTags.toString()}>{tasksTags}</BoxTaskTag>
                             
                     }

@@ -6,6 +6,8 @@ import User from "./components/User/User";
 import Header from './components/Header/Header';
 import Cards from './components/Cards/Cards';
 import Tasks from './components/Tasks/Tasks';
+import { useQuery } from '@apollo/client';
+import { TASKS } from './components/queries/queries';
 
 const prevState = [
   { id: "1", active: false  },
@@ -24,11 +26,30 @@ export type prevstate = {
   active: boolean
 }
 
+export type globalstate = {
+  taskTitleInput: string,
+  estimate: string,
+  assignee: string,
+  label: string,
+  dueDate: string,
+}
+
+const globalState = {
+  taskTitleInput: '',
+  estimate: '',
+  assignee: '',
+  label: '',
+  dueDate: '',
+}
+
 function App() {
   const [inputValue, setInputValue] = useState<string>('');
   const [selected, setSelected] = useState<Array<prevstate>>(prevState)
-  const [inputValueTaskTitle, setInputValueTaskTitle] = useState<string>('');
   const [plus, setPlus] = useState<boolean>(false);
+  const [newData, setnewData] = useState<globalstate>(globalState)
+
+  const { loading, error, data } = useQuery(TASKS);
+  const { tasks } = (data !== undefined) && data;
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -38,7 +59,11 @@ function App() {
     <>
       <Router>
         <div className="App">
-          <Navbar selected={selected} setSelected={setSelected} inputValueTaskTitle={inputValueTaskTitle} setInputValueTaskTitle={setInputValueTaskTitle} />
+          <Navbar 
+            selected={selected} 
+            setSelected={setSelected}  
+          />
+
           <div className='App__right'>
             <Header 
               inputValue={inputValue} 
@@ -47,12 +72,14 @@ function App() {
               selected={selected} 
               plus={plus} 
               setPlus={setPlus} 
-              inputValueTaskTitle={inputValueTaskTitle}
-              setInputValueTaskTitle={setInputValueTaskTitle}
+              tasks={tasks}
+              globalState={newData}
+              setGlobalData={setnewData}
             />
+            
             <Routes>
               <Route path="/dashboard" element={<Cards />}/>
-              <Route path="/mytask" element={<Tasks />}/>
+              <Route path="/mytask" element={<Tasks loading={loading} error={error} tasks={tasks} />}/>
               <Route path="/profile" element={<User />}/>
             </Routes>
           </div>

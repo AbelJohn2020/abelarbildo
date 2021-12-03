@@ -14,6 +14,7 @@ type buttonstt = {
 
 export const TaskTitleStyles = styled.div`
     margin: 0 16px 0 0;
+    max-height: 124px;
     padding: 8px;
     background: ${colors.neutral3};
 `;
@@ -41,6 +42,28 @@ export const ButtonsTT = styled.button(({background, color, margin}: buttonstt) 
     }
 `); 
 
+export const ButtonsCC = styled.button(({background, color, margin}: buttonstt) => css`
+    background: ${background};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    border: none;
+    outline: none;
+    color: ${color};
+    margin: ${margin};
+    cursor: pointer;
+
+    &:hover {
+        background: ${colors.primary2};
+        border-radius: 8px;
+    }
+
+    .icons {
+        font-size: 16px;
+    }
+`); 
+
 export const NameButtonsTT = styled.div`
     margin: 0 0 0 6px;
     text-transform: capitalize;
@@ -49,6 +72,7 @@ export const NameButtonsTT = styled.div`
     font-weight: 600;
     font-size: 15px;
     line-height: 24px;
+    letter-spacing: 0.75px;
 `;
 
 export const BoxCC = styled.div`

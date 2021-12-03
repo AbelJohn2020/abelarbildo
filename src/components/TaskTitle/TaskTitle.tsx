@@ -119,6 +119,10 @@ const TaskTitle = ({ setIsActive, tasks, globalState, setGlobalData }: taskTitle
                         globalState={globalState}
                         setGlobalData={setGlobalData}
                         keyState="estimate"
+                        margin="0 12px 0 0"
+                        padding="4px 20px"
+                        width="128px"
+                        paddingOption="4px 20px"
                     />
                 </div>
                 <div>
@@ -133,6 +137,10 @@ const TaskTitle = ({ setIsActive, tasks, globalState, setGlobalData }: taskTitle
                         globalState={globalState}
                         setGlobalData={setGlobalData}
                         keyState="assignee"
+                        margin="0 12px 0 0"
+                        padding="4px 20px"
+                        width="140px" // I was here!
+                        paddingOption="4px"
                     />
                 </div>
                 <div>
@@ -147,6 +155,10 @@ const TaskTitle = ({ setIsActive, tasks, globalState, setGlobalData }: taskTitle
                         globalState={globalState}
                         setGlobalData={setGlobalData}
                         keyState="label"
+                        margin="0"
+                        padding="4px 24px"
+                        width="136px"
+                        paddingOption="4px 20px"
                     />
                 </div>
             </BoxIconsButtonsTT>

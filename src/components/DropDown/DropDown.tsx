@@ -2,7 +2,7 @@ import React from 'react';
 import { globalstate } from '../../App';
 import Icons from '../Icons/Icons';
 import { drop } from '../TaskTitle/TaskTitle';
-import { DivImageOption, DivName, Option } from './DropDownStyles';
+import { ContainerName, ContainerOptions, DivImageOption, DivName, DivNameOption, ImgDropDown, Name, Option } from './DropDownStyles';
 
 type owner = {
     avatar: string,
@@ -20,9 +20,13 @@ type dropdown = {
     globalState: globalstate,
     setGlobalData: React.Dispatch<React.SetStateAction<globalstate>>,
     keyState: string,
+    margin: string,
+    padding: string,
+    width: string,
+    paddingOption: string,
 }
 
-const DropDown = ({options, image, nameImage, name, icon, dropdownState, setDropdownState, globalState, setGlobalData, keyState}: dropdown) => {
+const DropDown = ({options, image, nameImage, name, icon, dropdownState, setDropdownState, globalState, setGlobalData, keyState, margin, padding, width, paddingOption}: dropdown) => {
     const handleClick = () => {
         const activeDeactivate = dropdownState && dropdownState.map( prevState => {
             if(prevState.id === name) {
@@ -58,26 +62,26 @@ const DropDown = ({options, image, nameImage, name, icon, dropdownState, setDrop
 
     return (
         <div>
-            <div onClick={handleClick}>
+            <ContainerName onClick={handleClick} margin={margin} padding={padding}>
                 {
                     noContent === ""
                         ?   <DivName>
-                                <div>
+                                <DivName>
                                     {
                                         image
                                             ?   <i className='iconImageTT'>
-                                                    <img src={nameImage} alt="icon minus plus"/>
+                                                    <ImgDropDown src={nameImage} alt="icon minus plus"/>
                                                 </i>
                                             :   <Icons type={icon} className="icons" />
                                     }
-                                </div>
-                                <div>{name}</div>
+                                </DivName>
+                                <Name>{name}</Name>
                             </DivName>
-                        :   <DivName>{noContent}</DivName>
+                        :   <DivNameOption>{noContent}</DivNameOption>
                 }
                 
-            </div>
-            <div>
+            </ContainerName>
+            <ContainerOptions margin={margin} width={width}>
                 {
                     showHide && showHide.id === name && showHide.isActive === true
                         &&  options && options.map( (option: owner | string) => (
@@ -85,17 +89,19 @@ const DropDown = ({options, image, nameImage, name, icon, dropdownState, setDrop
                                     key={ typeof(option) === 'string' ? option :  option.fullName} 
                                     value={typeof(option) === 'string' ? option :  option.fullName}
                                     onClick={handleChange}
+                                    margin={paddingOption}
                                 >
                                     <DivImageOption 
                                         id={typeof(option) === 'string' ? option :  option.fullName}
-                                        image={typeof(option) !== 'string' && option.avatar } 
+                                        image={typeof(option) !== 'string' && option.avatar }
+                                        objectImage={option}
                                     >
                                     </DivImageOption>
                                     {typeof(option) === 'string' ? option :  option.fullName}
                                 </Option>
                             ))
                 }
-            </div>
+            </ContainerOptions>
         </div>
     )
 }

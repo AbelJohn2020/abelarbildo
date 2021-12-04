@@ -12,7 +12,7 @@ type buttonstt = {
     margin: string,
 }
 
-export const TaskTitleStyles = styled.div`
+export const TaskTitleStyles = styled.form`
     margin: 0 16px 0 0;
     max-height: 124px;
     padding: 8px;

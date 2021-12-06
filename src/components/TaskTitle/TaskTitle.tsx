@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Input } from "../Input/Input";
 import { colors } from "../UI/colors";
 import Mplus from "../iconsImages/minusplus.png";
 import {
@@ -76,7 +75,7 @@ const TaskTitle = ({
   };
 
   const handleCreate = () => {
-    setIsActive(false);
+    // setIsActive(false);
   };
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,6 +89,7 @@ const TaskTitle = ({
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(globalState);
 
     await createTask({
       variables: {
@@ -101,41 +101,25 @@ const TaskTitle = ({
       },
     });
 
-    // setGlobalData({
-    //   name: "",
-    //   pointEstimate: "",
-    //   owner: "",
-    //   tags: "",
-    //   dueDate: "",
-    //   status: "",
-    // });
+    setGlobalData({
+      name: "",
+      pointEstimate: "",
+      owner: "",
+      tags: "",
+      dueDate: "",
+      status: "",
+    });
   };
 
   const workers = getWorkers();
 
   return (
     <TaskTitleStyles onSubmit={handleSubmit}>
-      <Input
-        inputType="text"
-        name="name"
-        placeholder="task title"
-        value={globalState.name}
+      <input
+        type="text"
         onChange={handleChangeInput}
-        isThereFirstIcon={false}
-        isThereSecondIcon={false}
-        firstIcon=""
-        secondIcon=""
-        photo={false}
-        profile=""
-        width="100%"
-        color={colors.neutral}
-        border="none"
-        inputPlaceholder={colors.neutral2}
-        inputPadding="6px 0"
-        inputMargin="0"
-        inputBackground="transparent"
-        radius="0"
-        background={colors.neutral3}
+        value={globalState.name}
+        name="name"
       />
 
       <BoxIconsButtonsTT margin="8px 0 16px 0">

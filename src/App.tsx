@@ -66,7 +66,6 @@ function App() {
       <Router>
         <div className="App">
           <Navbar selected={selected} setSelected={setSelected} />
-
           <div className="App__right">
             <Header
               inputValue={inputValue}

@@ -34,6 +34,7 @@ type dropdown = {
   padding: string;
   width: string;
   paddingOption: string;
+  setClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const DropDown = ({
@@ -51,6 +52,7 @@ const DropDown = ({
   padding,
   width,
   paddingOption,
+  setClick,
 }: dropdown) => {
   const handleClick = () => {
     const activeDeactivate =
@@ -84,6 +86,7 @@ const DropDown = ({
       });
 
     setDropdownState(activeDeactivate);
+    setClick(false);
   };
 
   const blankSpace = (state: any) => {

@@ -48,7 +48,7 @@ const Header = ({
       name: "",
       pointEstimate: "",
       owner: "",
-      tags: "",
+      tags: [],
       dueDate: "",
       status: "",
     });

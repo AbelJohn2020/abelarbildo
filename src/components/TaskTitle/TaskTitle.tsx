@@ -13,6 +13,7 @@ import DropDown from "../DropDown/DropDown";
 import { globalstate } from "../../App";
 import { useMutation } from "@apollo/client";
 import { CREATE_TASK } from "../mutations/mutations";
+import DropdownSelect from "../DropdownSelect/DropdownSelect";
 
 type taskTitle = {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -49,6 +50,8 @@ const TaskTitle = ({
 
   const [dropdownState, setDropdownState] = useState<drop[]>(dropState);
 
+  const [click, setClick] = useState<boolean>(false);
+
   const getWorkers = () => {
     const workers =
       tasks &&
@@ -68,7 +71,7 @@ const TaskTitle = ({
       name: "",
       pointEstimate: "",
       owner: "",
-      tags: "",
+      tags: [],
       dueDate: "",
       status: "",
     });
@@ -85,27 +88,46 @@ const TaskTitle = ({
   const handleChangeDueDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     const date = event.target.value;
     setGlobalData({ ...globalState, dueDate: date });
+    setClick(false);
+  };
+
+  const handleChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked === true) {
+      return setGlobalData({
+        ...globalState,
+        tags: [...globalState.tags, e.target.value],
+      });
+    } else {
+      if (status.length > 1) {
+        const filterArr = globalState.tags.filter(
+          (element) => element !== e.target.value
+        );
+        return setGlobalData({ ...globalState, tags: [...filterArr] });
+      } else {
+        return setGlobalData({ ...globalState, tags: [] });
+      }
+    }
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(globalState);
 
-    await createTask({
-      variables: {
-        dueDate: globalState.dueDate,
-        name: globalState.name,
-        pointEstimate: globalState.pointEstimate,
-        status: globalState.status,
-        tags: globalState.tags,
-      },
-    });
+    // await createTask({
+    //   variables: {
+    //     dueDate: globalState.dueDate,
+    //     name: globalState.name,
+    //     pointEstimate: globalState.pointEstimate,
+    //     status: globalState.status,
+    //     tags: globalState.tags,
+    //   },
+    // });
 
     setGlobalData({
       name: "",
       pointEstimate: "",
       owner: "",
-      tags: "",
+      tags: [],
       dueDate: "",
       status: "",
     });
@@ -139,6 +161,7 @@ const TaskTitle = ({
             padding="4px 20px"
             width="128px"
             paddingOption="4px 20px"
+            setClick={setClick}
           />
         </div>
         <div>
@@ -157,10 +180,11 @@ const TaskTitle = ({
             padding="4px 20px"
             width="140px" // I was here!
             paddingOption="4px"
+            setClick={setClick}
           />
         </div>
         <div>
-          <DropDown
+          {/* <DropDown
             options={labels}
             image={false}
             nameImage=""
@@ -175,6 +199,15 @@ const TaskTitle = ({
             padding="4px 24px"
             width="136px"
             paddingOption="4px 20px"
+          /> */}
+          <DropdownSelect
+            title="label"
+            icon="label"
+            options={labels}
+            handleChangeCheckbox={handleChangeCheckbox}
+            globalState={globalState}
+            click={click}
+            setClick={setClick}
           />
         </div>
       </BoxIconsButtonsTT>
@@ -196,6 +229,7 @@ const TaskTitle = ({
             padding="4px 40px 4px 16px"
             width="160px"
             paddingOption="4px 20px"
+            setClick={setClick}
           />
         </div>
         <input

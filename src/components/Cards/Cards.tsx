@@ -17,6 +17,8 @@ const Cards = () => {
   const { loading, error, data } = useQuery(TASKS);
   const { tasks } = data !== undefined && data;
 
+  console.log(tasks);
+
   const getBacklog = () => {
     if (tasks !== undefined) {
       return tasks.filter(
@@ -88,6 +90,7 @@ const Cards = () => {
             {loading ? (
               <Loading />
             ) : (
+              backlog &&
               backlog.map(
                 ({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
                   <div key={id}>
@@ -129,6 +132,7 @@ const Cards = () => {
             {loading ? (
               <Loading />
             ) : (
+              todo &&
               todo.map(
                 ({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
                   <div key={id}>
@@ -170,6 +174,7 @@ const Cards = () => {
             {loading ? (
               <Loading />
             ) : (
+              inProgress &&
               inProgress.map(
                 ({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
                   <div key={id}>
@@ -211,6 +216,7 @@ const Cards = () => {
             {loading ? (
               <Loading />
             ) : (
+              cancelled &&
               cancelled.map(
                 ({ id, dueDate, name, owner, pointEstimate, tags }: card) => (
                   <div key={id}>

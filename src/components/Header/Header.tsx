@@ -1,5 +1,5 @@
 import React from "react";
-import { globalstate, prevstate } from "../../App";
+import { MyGlobalstate, Prevstate } from "../../App";
 import { Button } from "../Buttons/Buttons";
 import Icons from "../Icons/Icons";
 import { Input } from "../Input/Input";
@@ -22,12 +22,12 @@ type header = {
   inputValue: string;
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
   navbarIcons: navIcons[];
-  selected: prevstate[];
+  selected: Prevstate[];
   plus: boolean;
   setPlus: React.Dispatch<React.SetStateAction<boolean>>;
   tasks: taskmodels[];
-  globalState: globalstate;
-  setGlobalData: React.Dispatch<React.SetStateAction<globalstate>>;
+  globalState: MyGlobalstate;
+  setGlobalData: React.Dispatch<React.SetStateAction<MyGlobalstate>>;
 };
 
 const Header = ({

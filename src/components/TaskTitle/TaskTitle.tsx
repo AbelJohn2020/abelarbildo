@@ -10,19 +10,20 @@ import {
 } from "./TaskTitleStyles";
 import { taskmodels } from "../Tasks/TasksType";
 import DropDown from "../DropDown/DropDown";
-import { globalstate } from "../../App";
+import { MyGlobalstate } from "../../App";
 import { useMutation } from "@apollo/client";
 import { CREATE_TASK } from "../mutations/mutations";
 import DropdownSelect from "../DropdownSelect/DropdownSelect";
+import { TASKS } from "../queries/queries";
 
-type taskTitle = {
+type TaskTitleType = {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
   tasks: taskmodels[];
-  globalState: globalstate;
-  setGlobalData: React.Dispatch<React.SetStateAction<globalstate>>;
+  globalState: MyGlobalstate;
+  setGlobalData: React.Dispatch<React.SetStateAction<MyGlobalstate>>;
 };
 
-export type drop = {
+export type DropType = {
   id: string;
   isActive: boolean;
 };
@@ -45,10 +46,12 @@ const TaskTitle = ({
   tasks,
   globalState,
   setGlobalData,
-}: taskTitle) => {
-  const [createTask] = useMutation(CREATE_TASK);
+}: TaskTitleType) => {
+  const [createTask] = useMutation(CREATE_TASK, {
+    refetchQueries: [TASKS],
+  });
 
-  const [dropdownState, setDropdownState] = useState<drop[]>(dropState);
+  const [dropdownState, setDropdownState] = useState<DropType[]>(dropState);
 
   const [click, setClick] = useState<boolean>(false);
 
@@ -92,6 +95,7 @@ const TaskTitle = ({
   };
 
   const handleChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setClick(true);
     if (e.target.checked === true) {
       return setGlobalData({
         ...globalState,
@@ -157,8 +161,6 @@ const TaskTitle = ({
             globalState={globalState}
             setGlobalData={setGlobalData}
             keyState="pointEstimate"
-            margin="0 12px 0 0"
-            padding="4px 20px"
             width="128px"
             paddingOption="4px 20px"
             setClick={setClick}
@@ -176,30 +178,12 @@ const TaskTitle = ({
             globalState={globalState}
             setGlobalData={setGlobalData}
             keyState="owner"
-            margin="0 12px 0 0"
-            padding="4px 20px"
             width="140px" // I was here!
             paddingOption="4px"
             setClick={setClick}
           />
         </div>
         <div>
-          {/* <DropDown
-            options={labels}
-            image={false}
-            nameImage=""
-            name="label"
-            icon="label"
-            dropdownState={dropdownState}
-            setDropdownState={setDropdownState}
-            globalState={globalState}
-            setGlobalData={setGlobalData}
-            keyState="tags"
-            margin="0"
-            padding="4px 24px"
-            width="136px"
-            paddingOption="4px 20px"
-          /> */}
           <DropdownSelect
             title="label"
             icon="label"
@@ -208,6 +192,8 @@ const TaskTitle = ({
             globalState={globalState}
             click={click}
             setClick={setClick}
+            dropdownState={dropdownState}
+            setDropdownState={setDropdownState}
           />
         </div>
       </BoxIconsButtonsTT>
@@ -225,8 +211,6 @@ const TaskTitle = ({
             globalState={globalState}
             setGlobalData={setGlobalData}
             keyState="status"
-            margin="0"
-            padding="4px 40px 4px 16px"
             width="160px"
             paddingOption="4px 20px"
             setClick={setClick}

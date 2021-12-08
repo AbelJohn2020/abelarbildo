@@ -1,6 +1,7 @@
 import React from "react";
-import { globalstate } from "../../App";
+import { MyGlobalstate } from "../../App";
 import Icons from "../Icons/Icons";
+import { DropType } from "../TaskTitle/TaskTitle";
 import { OptionsSelectStyles } from "./DropdownSelectStyles";
 
 type select = {
@@ -8,9 +9,11 @@ type select = {
   icon: string;
   options: string[];
   handleChangeCheckbox: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  globalState: globalstate;
+  globalState: MyGlobalstate;
   click: boolean;
   setClick: React.Dispatch<React.SetStateAction<boolean>>;
+  dropdownState: DropType[];
+  setDropdownState: React.Dispatch<React.SetStateAction<DropType[]>>;
 };
 
 const DropdownSelect = ({
@@ -21,9 +24,23 @@ const DropdownSelect = ({
   globalState,
   click,
   setClick,
+  dropdownState,
+  setDropdownState,
 }: select) => {
   const handleClick = () => {
     setClick(!click);
+    if (click === true) {
+      setDropdownState([
+        { id: "estimate", isActive: false },
+        { id: "assignee", isActive: false },
+        { id: "label", isActive: false },
+        { id: "status", isActive: false },
+      ]);
+    }
+  };
+
+  const handleCheckClick = () => {
+    setClick(true);
   };
   return (
     <div onClick={handleClick}>
@@ -42,7 +59,7 @@ const DropdownSelect = ({
           </div>
         )}
       </div>
-      <OptionsSelectStyles click={click}>
+      <OptionsSelectStyles click={click} onClick={handleCheckClick}>
         {options &&
           options.map((option) => (
             <div key={option}>

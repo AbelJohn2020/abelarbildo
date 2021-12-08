@@ -8,7 +8,6 @@ import Cards from "./components/Cards/Cards";
 import Tasks from "./components/Tasks/Tasks";
 import { useQuery } from "@apollo/client";
 import { TASKS } from "./components/queries/queries";
-import Icons from "./components/Icons/Icons";
 
 const prevState = [
   { id: "1", active: false },
@@ -22,12 +21,12 @@ export const navbarIcons = [
   { id: "3", type: "assignee" },
 ];
 
-export type prevstate = {
+export type Prevstate = {
   id: string;
   active: boolean;
 };
 
-export type globalstate = {
+export type MyGlobalstate = {
   name: string;
   pointEstimate: string;
   owner: string;
@@ -47,11 +46,9 @@ const globalState = {
 
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
-  const [selected, setSelected] = useState<Array<prevstate>>(prevState);
+  const [selected, setSelected] = useState<Array<Prevstate>>(prevState);
   const [plus, setPlus] = useState<boolean>(false);
-  const [newData, setnewData] = useState<globalstate>(globalState);
-
-  // const [status, setStatus] = useState<string[]>([]);
+  const [newData, setnewData] = useState<MyGlobalstate>(globalState);
 
   const { loading, error, data } = useQuery(TASKS);
   const { tasks } = data !== undefined && data;
@@ -63,26 +60,6 @@ function App() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-
-  // const handleChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   console.log(e.target.checked);
-  //   if (e.target.checked === true) {
-  //     return setStatus([...status, e.target.value]);
-  //   } else {
-  //     console.log(status, "status");
-  //     console.log(status.length);
-  //     if (status.length > 1) {
-  //       const filterArr = status.filter(
-  //         (element) => element !== e.target.value
-  //       );
-  //       return setStatus(filterArr);
-  //     } else {
-  //       return setStatus([]);
-  //     }
-  //   }
-  // };
-
-  // console.log(status);
 
   return (
     <>
@@ -101,53 +78,6 @@ function App() {
               globalState={newData}
               setGlobalData={setnewData}
             />
-
-            {/* <div>
-              <div>
-                <div>
-                  <Icons type="label" className="icon" />
-                </div>
-                <div>label</div>
-              </div>
-              <div>
-                <div>
-                  <input
-                    type="checkbox"
-                    name="REACT_JS"
-                    value="REACT_JS"
-                    onChange={handleChangeCheckbox}
-                  />
-                  <div>react</div>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    name="PYTHON"
-                    value="PYTHON"
-                    onChange={handleChangeCheckbox}
-                  />
-                  <div>python</div>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    name="NODE_JS"
-                    value="NODE_JS"
-                    onChange={handleChangeCheckbox}
-                  />
-                  <div>node js</div>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    name="VUE_JS"
-                    value="VUE_JS"
-                    onChange={handleChangeCheckbox}
-                  />
-                  <div>vue</div>
-                </div>
-              </div>
-            </div> */}
 
             <Routes>
               <Route path="/dashboard" element={<Cards />} />

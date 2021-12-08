@@ -1,8 +1,8 @@
 import React from "react";
 import wordsToNumbers from "words-to-numbers";
-import { globalstate } from "../../App";
+import { MyGlobalstate } from "../../App";
 import Icons from "../Icons/Icons";
-import { drop } from "../TaskTitle/TaskTitle";
+import { DropType } from "../TaskTitle/TaskTitle";
 import {
   ContainerName,
   ContainerOptions,
@@ -14,24 +14,22 @@ import {
   Option,
 } from "./DropDownStyles";
 
-type owner = {
+type Owner = {
   avatar: string;
   fullName: string;
 };
 
-type dropdown = {
-  options: owner[] | string[];
+export type dropdown = {
+  options: Owner[] | string[];
   image: boolean;
   nameImage: string;
   name: string;
   icon: string;
-  dropdownState: drop[];
-  setDropdownState: React.Dispatch<React.SetStateAction<drop[]>>;
-  globalState: globalstate;
-  setGlobalData: React.Dispatch<React.SetStateAction<globalstate>>;
+  dropdownState: DropType[];
+  setDropdownState: React.Dispatch<React.SetStateAction<DropType[]>>;
+  globalState: MyGlobalstate;
+  setGlobalData: React.Dispatch<React.SetStateAction<MyGlobalstate>>;
   keyState: string;
-  margin: string;
-  padding: string;
   width: string;
   paddingOption: string;
   setClick: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,13 +46,12 @@ const DropDown = ({
   globalState,
   setGlobalData,
   keyState,
-  margin,
-  padding,
   width,
   paddingOption,
   setClick,
 }: dropdown) => {
   const handleClick = () => {
+    setClick(false);
     const activeDeactivate =
       dropdownState &&
       dropdownState.map((prevState) => {
@@ -86,7 +83,6 @@ const DropDown = ({
       });
 
     setDropdownState(activeDeactivate);
-    setClick(false);
   };
 
   const blankSpace = (state: any) => {
@@ -102,7 +98,7 @@ const DropDown = ({
 
   return (
     <div>
-      <ContainerName onClick={handleClick} margin={margin} padding={padding}>
+      <ContainerName onClick={handleClick}>
         {noContent === "" ? (
           <DivName>
             <DivName>
@@ -124,12 +120,12 @@ const DropDown = ({
           </DivNameOption>
         )}
       </ContainerName>
-      <ContainerOptions margin={margin} width={width}>
+      <ContainerOptions width={width}>
         {showHide &&
           showHide.id === name &&
           showHide.isActive === true &&
           options &&
-          options.map((option: owner | string) => (
+          options.map((option: Owner | string) => (
             <Option
               key={typeof option === "string" ? option : option.fullName}
               value={typeof option === "string" ? option : option.fullName}

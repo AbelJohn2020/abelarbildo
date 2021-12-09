@@ -19,7 +19,6 @@ export const Column = styled.div`
   box-sizing: border-box;
   color: ${colors.neutral};
   overflow-y: scroll;
-  overflow-x: hidden;
 
   &::-webkit-scrollbar {
     width: 8px;

@@ -1,5 +1,5 @@
 import React from "react";
-import { MyGlobalstate, Prevstate } from "../../App";
+import { Prevstate } from "../../App";
 import { Button } from "../Buttons/Buttons";
 import Icons from "../Icons/Icons";
 import { Input } from "../Input/Input";
@@ -9,7 +9,7 @@ import { colors } from "../UI/colors";
 import {
   HeaderIcons,
   HeaderIconsPLus,
-  PlusBox,
+  ShowTaskForm,
   PlusButton,
 } from "./HeaderStyles";
 
@@ -26,8 +26,6 @@ type header = {
   plus: boolean;
   setPlus: React.Dispatch<React.SetStateAction<boolean>>;
   tasks: taskmodels[];
-  globalState: MyGlobalstate;
-  setGlobalData: React.Dispatch<React.SetStateAction<MyGlobalstate>>;
 };
 
 const Header = ({
@@ -38,47 +36,23 @@ const Header = ({
   plus,
   setPlus,
   tasks,
-  globalState,
-  setGlobalData,
 }: header) => {
   const handleClick = () => {
     setPlus(!plus);
-
-    setGlobalData({
-      name: "",
-      pointEstimate: "",
-      owner: "",
-      tags: [],
-      dueDate: "",
-      status: "",
-    });
   };
 
   return (
     <div className="App__right--icons">
       <Input
-        inputType="text"
         name="search"
-        placeholder="search"
         value={inputValue}
         onChange={handleChange}
-        isThereFirstIcon={true}
         firstIcon="search"
-        isThereSecondIcon={true}
         secondIcon="notifications"
         photo={true}
-        profile="gaa" //modificar
-        width="100%"
-        color={colors.neutral2}
-        inputPlaceholder={colors.neutral2}
-        border="none"
-        inputPadding="20px 0"
-        inputMargin="0"
-        inputBackground="transparent"
-        radius="16px"
-        background={colors.neutral4}
+        profile="" //modificar
       />
-      <HeaderIconsPLus plus={plus} width="32">
+      <HeaderIconsPLus>
         <HeaderIcons>
           {navbarIcons.map(({ id, type }) => (
             <Button
@@ -92,19 +66,12 @@ const Header = ({
             />
           ))}
         </HeaderIcons>
-        <PlusBox>
-          {plus && (
-            <TaskTitle
-              setIsActive={setPlus}
-              tasks={tasks}
-              globalState={globalState}
-              setGlobalData={setGlobalData}
-            />
-          )}
+        <ShowTaskForm>
+          {plus && <TaskTitle setIsActive={setPlus} tasks={tasks} />}
           <PlusButton onClick={handleClick}>
             <Icons type="plus" className="plusIcon" />
           </PlusButton>
-        </PlusBox>
+        </ShowTaskForm>
       </HeaderIconsPLus>
     </div>
   );

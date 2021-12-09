@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Prevstate } from "../../App";
 import Icons from "../Icons/Icons";
-import { Title } from "../Titles/Titles";
 import { colors } from "../UI/colors";
 import {
   BoxIcon,

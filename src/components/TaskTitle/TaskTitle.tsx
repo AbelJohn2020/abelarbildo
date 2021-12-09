@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { colors } from "../UI/colors";
 import Mplus from "../iconsImages/minusplus.png";
 import {
-  BoxCC,
+  DownOptions,
   BoxIconsButtonsTT,
   ButtonsCC,
   NameButtonsTT,
@@ -10,7 +10,6 @@ import {
 } from "./TaskTitleStyles";
 import { taskmodels } from "../Tasks/TasksType";
 import DropDown from "../DropDown/DropDown";
-import { MyGlobalstate } from "../../App";
 import { useMutation } from "@apollo/client";
 import { CREATE_TASK } from "../mutations/mutations";
 import DropdownSelect from "../DropdownSelect/DropdownSelect";
@@ -19,8 +18,6 @@ import { TASKS } from "../queries/queries";
 type TaskTitleType = {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
   tasks: taskmodels[];
-  globalState: MyGlobalstate;
-  setGlobalData: React.Dispatch<React.SetStateAction<MyGlobalstate>>;
 };
 
 export type DropType = {
@@ -41,16 +38,30 @@ const dropState = [
   { id: "status", isActive: false },
 ];
 
-const TaskTitle = ({
-  setIsActive,
-  tasks,
-  globalState,
-  setGlobalData,
-}: TaskTitleType) => {
+export type MyGlobalstate = {
+  name: string;
+  pointEstimate: string;
+  owner: string;
+  tags: string[];
+  dueDate: string;
+  status: string;
+};
+
+const globalState = {
+  name: "",
+  pointEstimate: "",
+  owner: "",
+  tags: [],
+  dueDate: "",
+  status: "",
+};
+
+const TaskTitle = ({ setIsActive, tasks }: TaskTitleType) => {
   const [createTask] = useMutation(CREATE_TASK, {
     refetchQueries: [TASKS],
   });
 
+  const [newData, setNewData] = useState<MyGlobalstate>(globalState);
   const [dropdownState, setDropdownState] = useState<DropType[]>(dropState);
 
   const [click, setClick] = useState<boolean>(false);
@@ -70,7 +81,7 @@ const TaskTitle = ({
 
   const handleCancel = () => {
     setIsActive(false);
-    setGlobalData({
+    setNewData({
       name: "",
       pointEstimate: "",
       owner: "",
@@ -80,54 +91,50 @@ const TaskTitle = ({
     });
   };
 
-  const handleCreate = () => {
-    // setIsActive(false);
-  };
-
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGlobalData({ ...globalState, name: event.target.value });
+    setNewData({ ...newData, name: event.target.value });
   };
 
   const handleChangeDueDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     const date = event.target.value;
-    setGlobalData({ ...globalState, dueDate: date });
+    setNewData({ ...newData, dueDate: date });
     setClick(false);
   };
 
   const handleChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     setClick(true);
     if (e.target.checked === true) {
-      return setGlobalData({
-        ...globalState,
-        tags: [...globalState.tags, e.target.value],
+      return setNewData({
+        ...newData,
+        tags: [...newData.tags, e.target.value],
       });
     } else {
       if (status.length > 1) {
-        const filterArr = globalState.tags.filter(
+        const filterArr = newData.tags.filter(
           (element) => element !== e.target.value
         );
-        return setGlobalData({ ...globalState, tags: [...filterArr] });
+        return setNewData({ ...newData, tags: [...filterArr] });
       } else {
-        return setGlobalData({ ...globalState, tags: [] });
+        return setNewData({ ...newData, tags: [] });
       }
     }
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(globalState);
+    console.log(newData);
 
     // await createTask({
     //   variables: {
-    //     dueDate: globalState.dueDate,
-    //     name: globalState.name,
-    //     pointEstimate: globalState.pointEstimate,
-    //     status: globalState.status,
-    //     tags: globalState.tags,
+    //     dueDate: newData.dueDate,
+    //     name: newData.name,
+    //     pointEstimate: newData.pointEstimate,
+    //     status: newData.status,
+    //     tags: newData.tags,
     //   },
     // });
 
-    setGlobalData({
+    setNewData({
       name: "",
       pointEstimate: "",
       owner: "",
@@ -144,7 +151,7 @@ const TaskTitle = ({
       <input
         type="text"
         onChange={handleChangeInput}
-        value={globalState.name}
+        value={newData.name}
         name="name"
       />
 
@@ -158,8 +165,8 @@ const TaskTitle = ({
             icon="plus"
             dropdownState={dropdownState}
             setDropdownState={setDropdownState}
-            globalState={globalState}
-            setGlobalData={setGlobalData}
+            globalState={newData}
+            setGlobalData={setNewData}
             keyState="pointEstimate"
             width="128px"
             paddingOption="4px 20px"
@@ -175,8 +182,8 @@ const TaskTitle = ({
             icon="assignee"
             dropdownState={dropdownState}
             setDropdownState={setDropdownState}
-            globalState={globalState}
-            setGlobalData={setGlobalData}
+            globalState={newData}
+            setGlobalData={setNewData}
             keyState="owner"
             width="140px" // I was here!
             paddingOption="4px"
@@ -189,7 +196,7 @@ const TaskTitle = ({
             icon="label"
             options={labels}
             handleChangeCheckbox={handleChangeCheckbox}
-            globalState={globalState}
+            globalState={newData}
             click={click}
             setClick={setClick}
             dropdownState={dropdownState}
@@ -198,7 +205,7 @@ const TaskTitle = ({
         </div>
       </BoxIconsButtonsTT>
 
-      <BoxCC>
+      <DownOptions>
         <div>
           <DropDown
             options={status}
@@ -208,8 +215,8 @@ const TaskTitle = ({
             icon="hamburger"
             dropdownState={dropdownState}
             setDropdownState={setDropdownState}
-            globalState={globalState}
-            setGlobalData={setGlobalData}
+            globalState={newData}
+            setGlobalData={setNewData}
             keyState="status"
             width="160px"
             paddingOption="4px 20px"
@@ -236,13 +243,12 @@ const TaskTitle = ({
             background="transparent"
             color={colors.neutral}
             margin="0"
-            onClick={handleCreate}
             type="submit"
           >
             <NameButtonsTT>create</NameButtonsTT>
           </ButtonsCC>
         </BoxIconsButtonsTT>
-      </BoxCC>
+      </DownOptions>
     </TaskTitleStyles>
   );
 };

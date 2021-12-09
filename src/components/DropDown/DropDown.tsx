@@ -1,8 +1,7 @@
 import React from "react";
 import wordsToNumbers from "words-to-numbers";
-import { MyGlobalstate } from "../../App";
 import Icons from "../Icons/Icons";
-import { DropType } from "../TaskTitle/TaskTitle";
+import { DropType, MyGlobalstate } from "../TaskTitle/TaskTitle";
 import {
   ContainerName,
   ContainerOptions,
@@ -19,7 +18,7 @@ type Owner = {
   fullName: string;
 };
 
-export type dropdown = {
+export type DropdownType = {
   options: Owner[] | string[];
   image: boolean;
   nameImage: string;
@@ -49,18 +48,16 @@ const DropDown = ({
   width,
   paddingOption,
   setClick,
-}: dropdown) => {
+}: DropdownType) => {
   const handleClick = () => {
     setClick(false);
-    const activeDeactivate =
-      dropdownState &&
-      dropdownState.map((prevState) => {
-        if (prevState.id === name) {
-          return { ...prevState, isActive: !prevState.isActive };
-        } else {
-          return { ...prevState, isActive: false };
-        }
-      });
+    const activeDeactivate = dropdownState?.map((prevState) => {
+      if (prevState.id === name) {
+        return { ...prevState, isActive: !prevState.isActive };
+      } else {
+        return { ...prevState, isActive: false };
+      }
+    });
 
     setDropdownState(activeDeactivate);
   };
@@ -76,11 +73,9 @@ const DropDown = ({
       [keyState]: e.target.value || e.target.id,
     });
 
-    const activeDeactivate =
-      dropdownState &&
-      dropdownState.map((prevState) => {
-        return { ...prevState, isActive: false };
-      });
+    const activeDeactivate = dropdownState?.map((prevState) => {
+      return { ...prevState, isActive: false };
+    });
 
     setDropdownState(activeDeactivate);
   };
@@ -124,8 +119,7 @@ const DropDown = ({
         {showHide &&
           showHide.id === name &&
           showHide.isActive === true &&
-          options &&
-          options.map((option: Owner | string) => (
+          options?.map((option: Owner | string) => (
             <Option
               key={typeof option === "string" ? option : option.fullName}
               value={typeof option === "string" ? option : option.fullName}

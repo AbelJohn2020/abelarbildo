@@ -1,7 +1,6 @@
 import React from "react";
-import { MyGlobalstate } from "../../App";
 import Icons from "../Icons/Icons";
-import { DropType } from "../TaskTitle/TaskTitle";
+import { DropType, MyGlobalstate } from "../TaskTitle/TaskTitle";
 import { OptionsSelectStyles } from "./DropdownSelectStyles";
 
 type select = {

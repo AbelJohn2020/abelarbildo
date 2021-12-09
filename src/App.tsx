@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
@@ -26,36 +26,13 @@ export type Prevstate = {
   active: boolean;
 };
 
-export type MyGlobalstate = {
-  name: string;
-  pointEstimate: string;
-  owner: string;
-  tags: string[];
-  dueDate: string;
-  status: string;
-};
-
-const globalState = {
-  name: "",
-  pointEstimate: "",
-  owner: "",
-  tags: [],
-  dueDate: "",
-  status: "",
-};
-
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
   const [selected, setSelected] = useState<Array<Prevstate>>(prevState);
   const [plus, setPlus] = useState<boolean>(false);
-  const [newData, setnewData] = useState<MyGlobalstate>(globalState);
 
   const { loading, error, data } = useQuery(TASKS);
   const { tasks } = data !== undefined && data;
-
-  useEffect(() => {
-    setnewData(newData);
-  }, [newData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -75,8 +52,6 @@ function App() {
               plus={plus}
               setPlus={setPlus}
               tasks={tasks}
-              globalState={newData}
-              setGlobalData={setnewData}
             />
 
             <Routes>

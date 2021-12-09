@@ -1,8 +1,7 @@
 import { shallow } from "enzyme";
 import React, { useState } from "react";
-import { MyGlobalstate } from "../App";
 import DropDown from "../components/DropDown/DropDown";
-import { DropType } from "../components/TaskTitle/TaskTitle";
+import { DropType, MyGlobalstate } from "../components/TaskTitle/TaskTitle";
 
 const globalState = {
   name: "",
